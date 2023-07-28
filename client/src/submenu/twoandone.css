@@ -1,0 +1,35 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+.twoone{
+    position: absolute;
+    display: block;
+    z-index: 1;
+    top:70px;
+    width: calc(100% );
+    height: calc(100% - 70px);
+    overflow: hidden;
+}
+.twoone table{
+    position: absolute;
+    z-index: 2;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size: 24px;
+    white-space:nowrap;
+    border-color: blue;
+}
+.twoone table th{
+    padding-left:25px;
+    padding-right:25px;
+    background-color: red;
+}
+
+#datePicker{
+    position: absolute;
+    z-index: 3;
+    left:50%;
+}
+

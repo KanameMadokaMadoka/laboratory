@@ -1,0 +1,30 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+.three{
+    position: absolute;
+    display: block;
+    z-index: 1;
+    top:70px;
+    width: calc(100% );
+    height: calc(100% - 70px);
+    overflow: hidden;
+}
+.three img{
+    background-image:url(./mami.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.three .content{
+    position: absolute;
+    z-index: 2;
+    top:50%;
+    left:75%;
+    transform:translate(-50%,-50%);
+    color:rgb(222, 226, 4);
+    font-size: 24px;
+    white-space:nowrap;
+}
+

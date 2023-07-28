@@ -1,0 +1,79 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+.main{
+background-color: pink;
+}
+
+.main .infomation{
+    display: flex;
+    position: relative;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 220px;
+}
+
+.main.close .infomation{
+    margin-left: 60px;
+}
+
+.main .infomation h1{
+    margin-right: 700px;
+}
+.main.close .infomation h1{
+    margin-right: 800px;
+}
+
+.main .Cardstitle{
+    display: block;
+    margin-top:200px;
+    margin-left: 220px;
+}
+
+.main.close .Cardstitle{
+    margin-left:70px;
+}
+
+.main .Cards{
+    display: flex;    /*讓元素橫向排列*/
+    flex-wrap: wrap;  /*當內部元素超過寬度時自動換行 */
+    position: relative;
+    margin-left:220px;
+    z-index: 10;
+    background-color: yellow;
+    width: 1700px;
+}
+
+.main.close .Cards{
+    width:1860px;
+    margin-left: 60px;
+}
+
+.main .card{
+    position: relative;
+    text-align: center;
+    margin-top: 30px;
+    width: 170px;
+}
+
+.main.close .card{
+    width: 186px;
+}
+
+.tooltiptext{
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    top:-170px;
+    border-radius: 20px;
+    background-color:brown;
+    transition: all 1s ease ;
+}
+.card:Hover .tooltiptext{
+    visibility: visible;
+    opacity: 1;
+}
+

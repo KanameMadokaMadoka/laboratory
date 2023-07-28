@@ -1,0 +1,30 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+.one{
+    position: absolute;
+    display: block;
+    z-index: 1;
+    top:70px;
+    width: calc(100% );
+    height: calc(100% - 70px);
+    overflow: hidden;
+}
+.one img{
+    background-image:url(./madoka.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.one .content{
+    position: absolute;
+    z-index: 2;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:rgb(236, 118, 138);
+    font-size: 24px;
+    white-space:nowrap;
+}
+
