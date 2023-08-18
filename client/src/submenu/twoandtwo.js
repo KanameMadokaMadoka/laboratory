@@ -46,12 +46,15 @@ const Twoandtwo = (props) => {
       Axios.post("http://localhost:3001/login", {
       email: email,
       pwd: password,
-    }).then((result) => {
+    }).then((response) => {
+      const result = response.data;
       switch(result){
         case 'account or password error':
+          console.log('帳號或密碼錯誤被觸發')
           alert('account or password error');
           break;
         case 'backend error':
+          console.log('後端錯誤被觸發');
           alert('backend error');
           break;
         default:
@@ -61,12 +64,6 @@ const Twoandtwo = (props) => {
           break;
       }
     });
-
-
-
-
-
-
     };
     //開啟註冊
     const toregister = () => {

@@ -21,10 +21,13 @@ background-color: pink;
 }
 
 .main .infomation h1{
-    margin-right: 700px;
+    margin-right: 150px;
 }
 .main.close .infomation h1{
-    margin-right: 800px;
+    margin-right: 300px;
+}
+.main .infomation label{
+    margin-left: 100px;
 }
 
 .main .Cardstitle{
@@ -36,7 +39,7 @@ background-color: pink;
 .main.close .Cardstitle{
     margin-left:70px;
 }
-
+/* 整個設備欄位 */
 .main .Cards{
     display: flex;    /*讓元素橫向排列*/
     flex-wrap: wrap;  /*當內部元素超過寬度時自動換行 */
@@ -44,34 +47,43 @@ background-color: pink;
     margin-left:220px;
     z-index: 10;
     background-color: yellow;
-    width: 1700px;
+    width: 1680px;
 }
-
+/* 當側邊欄關閉時 整個設備欄位 */
 .main.close .Cards{
-    width:1860px;
+    width:1840px;
     margin-left: 60px;
 }
-
-.main .card{
+/* 單一設備卡 */
+.main .Cards .card{
     position: relative;
     text-align: center;
     margin-top: 30px;
-    width: 170px;
+    width: 168px;
+}
+/* 當側邊欄關閉時 單一設備卡 */
+.main.close .Cards .card{
+    width: 184px;
 }
 
-.main.close .card{
-    width: 186px;
+/* 控制設備圖片大小 */
+.main .card-icon img{
+    width:50px;
+    height:50px;
 }
 
 .tooltiptext{
-    position: relative;
+    position: absolute;
     visibility: hidden;
     opacity: 0;
-    top:-170px;
+    z-index: 5;
+    top:15%;
+    left:25%;
     border-radius: 20px;
     background-color:brown;
     transition: all 1s ease ;
 }
+
 .card:Hover .tooltiptext{
     visibility: visible;
     opacity: 1;

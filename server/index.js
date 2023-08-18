@@ -25,10 +25,6 @@ function generateVerificationCode() {
   return code;
 }
 let code = '';
-
-
-
-
 //登入
 app.post("/login",(req,res)=>{
  const email = req.body.email;
@@ -41,8 +37,10 @@ app.post("/login",(req,res)=>{
       res.send('backend error');
       console.log(err);
     }else if(pwd===result[0].pwd){
+      console.log('welcome   ' + result[0].name);
       res.send('welcome   ' + result[0].name);
     }else {
+      console.log('account or password error');
       res.send('account or password error');
     }    
   }
@@ -202,8 +200,9 @@ app.post("/createequipment", (req, res) => {
   (err, result) => {
     if (err) {
       console.log(err);
+      res.send('false');
     }else{
-      console.log(result);
+      res.send('true');
     }
   }
 );
@@ -215,7 +214,6 @@ app.get("/equipment", (req, res) => {
       console.log(err);
     } else {
       res.send(result);
-      console.log('HI')
     }
   });
 });
