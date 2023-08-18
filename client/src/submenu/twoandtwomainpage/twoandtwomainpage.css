@@ -31,11 +31,14 @@ background-color: pink;
 }
 
 .main .Cardstitle{
-    display: block;
+    display: flex;
     margin-top:200px;
-    margin-left: 220px;
+    margin-left:220px;
 }
-
+.main .Cardstitle button{
+    position:absolute;
+    right: 0;
+}
 .main.close .Cardstitle{
     margin-left:70px;
 }

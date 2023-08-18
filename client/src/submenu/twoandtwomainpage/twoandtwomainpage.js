@@ -5,6 +5,7 @@ import Axios from "axios";
 // 主组件
 const Twoandtwomainpage = (props) => {
   const [selectedarea, setSelectedArea] = useState('');
+  const [visibleDevices, setVisibleDevices] = useState(50);
   const [equipmentsnumber,setEquipmentsnumber] = useState({
     all:0,
     office:0,
@@ -102,6 +103,12 @@ useEffect(() => {
     setSelectedArea(event.target.value);
   };
   
+  // 滾動處理函式，當滾動到底部時增加可見的設備數量
+  const showmore = () => {
+    setVisibleDevices((prevVisibleDevices) =>
+        Math.min(prevVisibleDevices + 50, 500)
+      );
+  };
   const logout = () => {
     const a =document.querySelector('.content');
     const b =document.querySelector('.register');
@@ -175,10 +182,10 @@ useEffect(() => {
       <p>所在區域: {selectedarea}</p>
       <button onClick={logout}>登出</button>
       </div>
-      <div className='Cardstitle'><h2>{selectedarea}</h2></div>
+      <div className='Cardstitle'><h2>{selectedarea}</h2> <button onClick={showmore}>顯示更多</button></div>
       <div className='Cards'>
 
-      {equipments.map((equipment, index) => (
+      {equipments.slice(0, visibleDevices).map((equipment, index) => (
         selectedarea === equipment.position || selectedarea ==='全部' ?(
           <Card
             key={index}
