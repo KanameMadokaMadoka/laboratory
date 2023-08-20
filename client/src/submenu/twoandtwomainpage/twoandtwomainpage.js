@@ -12,6 +12,13 @@ const Twoandtwomainpage = (props) => {
     IT:0,
     medical:0,
   });
+  const [name,setName] = useState('');
+  const [owner,setOwner] = useState('');
+  const [position,setPosition] = useState('');
+  const [model,setModel] = useState('');
+  const [code,setCode] = useState('');
+  const [year,setYear] = useState('');
+
 //網頁加載完畢後自動執行
 useEffect(() => {
   update();
@@ -109,6 +116,7 @@ useEffect(() => {
         Math.min(prevVisibleDevices + 50, 500)
       );
   };
+  //登出
   const logout = () => {
     const a =document.querySelector('.content');
     const b =document.querySelector('.register');
@@ -121,6 +129,7 @@ useEffect(() => {
     d.style.display="none";
     e.style.display="none";
   }
+  //向後端資料庫抓取資料更新
   const update = () => {
     let officeCount=0;
     let ITCount=0;
@@ -165,6 +174,54 @@ useEffect(() => {
     console.log('網頁加載完成');
   }
 
+  const equipmentcreate = () => {
+    alert('equipmentcreate功能已被觸發')
+    cancel();
+  }
+  const equipmentedit = () =>{
+    alert('edit已被觸發');
+    cancel();
+  }
+  const equipmentdel = () =>{
+    alert('del已被觸發');
+    cancel();
+  }
+  const showaddequipment = () => {
+    const a =document.querySelector('.addequipment');
+    const b =document.querySelector('.editequipment');
+    const c =document.querySelector('.delequipment');
+    a.style.display= 'block';
+    b.style.display= 'none';
+    c.style.display= 'none';
+  }
+
+  const showeditequipment = () => {
+    const a =document.querySelector('.addequipment');
+    const b =document.querySelector('.editequipment');
+    const c =document.querySelector('.delequipment');
+    a.style.display= 'none';
+    b.style.display= 'block';
+    c.style.display= 'none';
+  }
+
+  const showdelequipment = () => {
+    const a =document.querySelector('.addequipment');
+    const b =document.querySelector('.editequipment');
+    const c =document.querySelector('.delequipment');
+    a.style.display= 'none';
+    b.style.display= 'none';
+    c.style.display= 'block';
+  }
+
+  const cancel = () =>{
+    const a =document.querySelector('.addequipment');
+    const b =document.querySelector('.editequipment');
+    const c =document.querySelector('.delequipment');
+    a.style.display= 'none';
+    b.style.display= 'none';
+    c.style.display= 'none';
+  }
+
 
   return (
     <div className={`main ${props.state ? '' : 'close'}`}>
@@ -182,7 +239,56 @@ useEffect(() => {
       <p>所在區域: {selectedarea}</p>
       <button onClick={logout}>登出</button>
       </div>
-      <div className='Cardstitle'><h2>{selectedarea}</h2> <button onClick={showmore}>顯示更多</button></div>
+
+      <div className='addequipment'>
+      <label>設備名稱:</label>
+      <input value={name} onChange={(e)=>setName(e.target.value)}style={{ width: '150px' }} placeholder='不要超過9個字喔'/>
+      <label>擁有人:</label>
+      <input value={owner} onChange={(e)=>setOwner(e.target.value)}style={{ width: '150px' }} placeholder='只能輸入onwer拉'/>
+      <label for="position">地點:</label>
+        <select onChange={(e)=>setPosition(e.target.value)}>
+            <option value="資訊室">資訊室</option>
+            <option value="醫務室">醫務室</option>
+            <option value="辦公室">辦公室</option>
+        </select>
+      <label for="model">型號:</label>
+        <select onChange={(e)=>setModel(e.target.value)}>
+            <option value='Apple'>Apple</option>
+            <option value='TSMC'>TSMC</option>
+            <option value='Google'>Google</option>
+        </select>
+      <label>財產編號:</label>
+      <input value={code} onChange={(e)=>setCode(e.target.value)}style={{ width: '150px' }} />
+      <label>年份:</label>
+      <select onChange={(e)=>setYear(e.target.value)}>
+            <option value='2021'>2021</option>
+            <option value='2022'>2022</option>
+            <option value='2023'>2023</option>
+        </select>
+      <button onClick={equipmentcreate}>建立</button>
+      <button onClick={cancel}>取消</button>
+      </div>
+
+      <div className='editequipment'>
+      <label>要修改的設備財產編號:</label>
+      <input value={code} onChange={(e)=>setCode(e.target.value)}style={{ width: '150px' }}/>
+      <button onClick={equipmentedit}>編輯</button>
+      <button onClick={cancel}>取消</button>
+      </div>
+
+      <div className='delequipment'>
+      <label>要刪除的設備財產編號:</label>
+      <input value={code} onChange={(e)=>setCode(e.target.value)}style={{ width: '150px' }}/>
+      <button onClick={equipmentdel}>刪除</button>
+      <button onClick={cancel}>取消</button>
+      </div>
+
+      <div className='Cardstitle'><h2>{selectedarea}</h2>
+      <button className='button1' onClick={showaddequipment}>新增設備</button>
+      <button  onClick={showeditequipment}>修改設備</button>
+      <button  onClick={showdelequipment}>刪除設備</button>
+      <button  onClick={showmore}>顯示更多</button>
+      </div>
       <div className='Cards'>
 
       {equipments.slice(0, visibleDevices).map((equipment, index) => (

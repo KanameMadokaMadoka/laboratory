@@ -55,7 +55,7 @@ const Counter = ({name='未輸入',submenu1='未輸入',submenu2='未輸入',sub
     return(
         <div id={id}>
           <img src={picsrc} alt='none'></img>
-        <span>{name}</span>
+        <span id={id+0} onClick={chage}>{name}</span>
         </div>
     )
   }else{

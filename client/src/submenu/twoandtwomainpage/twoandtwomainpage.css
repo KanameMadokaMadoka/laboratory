@@ -35,13 +35,19 @@ background-color: pink;
     margin-top:200px;
     margin-left:220px;
 }
-.main .Cardstitle button{
-    position:absolute;
-    right: 0;
+
+.main .Cardstitle .button1{
+    margin-left: 1220px;
 }
+
+.main.close .Cardstitle .button1{
+    margin-left: 1370px;
+}
+
 .main.close .Cardstitle{
     margin-left:70px;
 }
+
 /* 整個設備欄位 */
 .main .Cards{
     display: flex;    /*讓元素橫向排列*/
@@ -50,11 +56,11 @@ background-color: pink;
     margin-left:220px;
     z-index: 10;
     background-color: yellow;
-    width: 1680px;
+    width: calc(100%-220px);
 }
 /* 當側邊欄關閉時 整個設備欄位 */
 .main.close .Cards{
-    width:1840px;
+    width:calc(100%-60px);
     margin-left: 60px;
 }
 /* 單一設備卡 */
@@ -91,4 +97,46 @@ background-color: pink;
     visibility: visible;
     opacity: 1;
 }
+/* 以下是輸入資料的欄位 */
+.addequipment{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:350px;
+}
+.main.close .addequipment{
+    left:300px;
+}
+.editequipment{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:650px;
+}
+.main.close .editequipment{
+    left:600px;
+}
+.delequipment{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:650px;
+}
+.main.close .delequipment{
+    left:600px;
+}
+
+
 
