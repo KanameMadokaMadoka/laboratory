@@ -202,6 +202,7 @@ app.post("/createequipment", (req, res) => {
       console.log(err);
       res.send('false');
     }else{
+      console.log('成功新增設備',name,model,code);
       res.send('true');
     }
   }
@@ -239,15 +240,18 @@ app.put("/updateequipment", (req, res) => {
   );
 });
 //刪除設備
-app.delete("/deleteequipment/:position", (req, res) => {
-  const position = req.params.position
-  console.log('我是position'+position);
-  db.query("DELETE FROM equipment WHERE position = ?", position, (err, result) => {
+app.delete("/deleteequipment/:code", (req, res) => {
+  const code = req.params.code
+  console.log('我是code'+code);
+  db.query("DELETE FROM equipment WHERE code = ?", code, (err, result) => {
     if (err) {
+      console.log('刪除設備失敗!')
       console.log(err);
+      res.send(fasle);
     } else {
+      console.log('成功刪除設備!')
       console.log(result)
-      res.send(result);
+      res.send(true);
     }
   });
 });
