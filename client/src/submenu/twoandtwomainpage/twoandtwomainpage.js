@@ -18,6 +18,15 @@ const Twoandtwomainpage = (props) => {
   const [code,setCode] = useState('M0');
   const [year,setYear] = useState('2020');
   const [category,setCategory] = useState('monitor');
+  const [tmpequipment,setTmpequipment] = useState({
+    name: '',
+    code: '',
+    position: '',
+    model: '',
+    principal: '',
+    year: '',
+    category: ''
+  });
   const initialEquipments = Array(500).fill({
     name: '',
     code: '',
@@ -227,8 +236,31 @@ const Twoandtwomainpage = (props) => {
   }
 
   const equipmentedit = () =>{
-    alert('edit已被觸發');
-    cancel();
+    Axios.put("http://localhost:3001/updateequipment", {
+        name:name,
+        code:code,
+        position:position,
+        model:model,
+        principal:owner,
+        year:year,
+        category:category,
+        name2:tmpequipment.name,
+        code2:tmpequipment.code,
+        position2:tmpequipment.position,
+        model2:tmpequipment.model,
+        principal2:tmpequipment.principal,
+        year2:tmpequipment.year,
+        category2:tmpequipment.category,
+      }).then((req) => {
+        let tmp =req.data;
+        if(tmp){
+          alert('修改成功')
+          cancel();
+        }else{
+          alert('修改失敗')
+          cancel();
+        }
+      })
   }
   const equipmentdel = () =>{
     if(code.length>4||code[0]!=='M')
@@ -270,6 +302,28 @@ const Twoandtwomainpage = (props) => {
     cancel();
     }
   }
+  const openeditform = () => {
+    const editEquipment = equipments.find(equipment => equipment.code === code);
+    if(editEquipment){
+    setTmpequipment(editEquipment)
+    setName(editEquipment.name)
+    setCode(editEquipment.code)
+    setModel(editEquipment.model)
+    setOwner(editEquipment.owner)
+    setPosition(editEquipment.position)
+    setYear(editEquipment.year)
+    setCategory(editEquipment.category)
+    const a =document.querySelector('.addequipment');
+    const b =document.querySelector('.editequipment');
+    const c =document.querySelector('.delequipment');
+    const d =document.querySelector('.editform');
+    a.style.display= 'none';
+    b.style.display= 'none';
+    c.style.display= 'none';
+    d.style.display= 'block';
+    }else{alert('找不到該設備')}
+  }
+
   const showaddequipment = () => {
     const a =document.querySelector('.addequipment');
     const b =document.querySelector('.editequipment');
@@ -301,9 +355,11 @@ const Twoandtwomainpage = (props) => {
     const a =document.querySelector('.addequipment');
     const b =document.querySelector('.editequipment');
     const c =document.querySelector('.delequipment');
+    const d =document.querySelector('.editform');
     a.style.display= 'none';
     b.style.display= 'none';
     c.style.display= 'none';
+    d.style.display= 'none';
   }
 
   //網頁加載完畢後自動執行
@@ -336,19 +392,19 @@ const Twoandtwomainpage = (props) => {
       <label>擁有人:</label>
       <input value={owner} onChange={(e)=>setOwner(e.target.value)}style={{ width: '150px' }} placeholder='只能輸入onwer拉'/>
       <label >地點:</label>
-        <select onChange={(e)=>setPosition(e.target.value)}>
+        <select value={position} onChange={(e)=>setPosition(e.target.value)}>
             <option value="資訊室">資訊室</option>
             <option value="醫務室">醫務室</option>
             <option value="辦公室">辦公室</option>
         </select>
       <label >型號:</label>
-        <select onChange={(e)=>setModel(e.target.value)}>
+        <select value={model} onChange={(e)=>setModel(e.target.value)}>
             <option value='TSMC'>TSMC</option>
             <option value='Apple'>Apple</option>
             <option value='Google'>Google</option>
         </select>
       <label >類型:</label>
-        <select onChange={(e)=>setCategory(e.target.value)}>
+        <select value={category} onChange={(e)=>setCategory(e.target.value)}>
             <option value='monitor'>monitor</option>
             <option value='computer'>computer</option>
             <option value='printer'>printer</option>
@@ -356,7 +412,7 @@ const Twoandtwomainpage = (props) => {
       <label>財產編號:</label>
       <input value={code} onChange={(e)=>setCode(e.target.value)}style={{ width: '150px' }} />
       <label>年份:</label>
-      <select onChange={(e)=>setYear(e.target.value)}>
+      <select value={year} onChange={(e)=>setYear(e.target.value)}>
             <option value='2021'>2021</option>
             <option value='2022'>2022</option>
             <option value='2023'>2023</option>
@@ -368,6 +424,41 @@ const Twoandtwomainpage = (props) => {
       <div className='editequipment'>
       <label>要修改的設備財產編號:</label>
       <input value={code} onChange={(e)=>setCode(e.target.value)}style={{ width: '150px' }}/>
+      <button onClick={openeditform}>編輯</button>
+      <button onClick={cancel}>取消</button>
+      </div>
+
+      <div className='editform'>
+      <label>設備名稱:</label>
+      <input value={name} onChange={(e)=>setName(e.target.value)}style={{ width: '150px' }} placeholder='不要超過9個字喔'/>
+      <label>擁有人:</label>
+      <input value={owner} onChange={(e)=>setOwner(e.target.value)}style={{ width: '150px' }} placeholder='只能輸入onwer拉'/>
+      <label >地點:</label>
+        <select value={position} onChange={(e)=>setPosition(e.target.value)}>
+            <option value="資訊室">資訊室</option>
+            <option value="醫務室">醫務室</option>
+            <option value="辦公室">辦公室</option>
+        </select>
+      <label >型號:</label>
+        <select value={model} onChange={(e)=>setModel(e.target.value)}>
+            <option value='TSMC'>TSMC</option>
+            <option value='Apple'>Apple</option>
+            <option value='Google'>Google</option>
+        </select>
+      <label >類型:</label>
+        <select value={category} onChange={(e)=>setCategory(e.target.value)}>
+            <option value='monitor'>monitor</option>
+            <option value='computer'>computer</option>
+            <option value='printer'>printer</option>
+        </select>
+      <label>財產編號:</label>
+      <input value={code} onChange={(e)=>setCode(e.target.value)}style={{ width: '150px' }} />
+      <label>年份:</label>
+      <select value={year} onChange={(e)=>setYear(e.target.value)}>
+            <option value='2021'>2021</option>
+            <option value='2022'>2022</option>
+            <option value='2023'>2023</option>
+        </select>
       <button onClick={equipmentedit}>編輯</button>
       <button onClick={cancel}>取消</button>
       </div>
@@ -385,8 +476,8 @@ const Twoandtwomainpage = (props) => {
       <button  onClick={showdelequipment}>刪除設備</button>
       <button  onClick={showmore}>顯示更多</button>
       </div>
+      
       <div className='Cards'>
-
       {equipments.slice(0, visibleDevices).map((equipment, index) => (
         selectedarea === equipment.position || selectedarea ==='全部' ?(
           <Card

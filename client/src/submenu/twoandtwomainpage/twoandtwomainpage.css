@@ -124,6 +124,19 @@ background-color: pink;
 .main.close .editequipment{
     left:600px;
 }
+.editform{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:350px;
+}
+.main.close .editform{
+    left:250px;
+}
 .delequipment{
     display: none;
     position:absolute;
