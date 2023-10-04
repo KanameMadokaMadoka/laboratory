@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin:0px;
+    padding:0px;
+}
+.topside{
+    position: fixed;
+    display: inline-flex;
+    flex-direction:row;
+    background-color: rgb(92, 87, 90);
+    z-index: 5;
+    left: 0px;
+    width: 100%;
+    height: 70px;
+}
+.topside .contain{
+    position: absolute;
+    top:0;
+    left:85%;
+    margin: 10px;
+    background-color: pink;
+}
+.topside .img{
+  position:relative;
+  left: 220px;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  transition: all 0.5 ease;
+}
+.topside .contain button{
+    margin:5px;
+}
+
+.topside.close .img{
+    left:60px;
+}

@@ -1,0 +1,75 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+.twotwo{
+    position:absolute;
+    display: block;
+    z-index: 1;
+    top:70px;
+    width: calc(100% );
+    height: calc(100% - 70px);
+    background-color: rgb(145, 86, 240);
+}
+
+.twotwo .mainpage{
+    display:none;
+}
+
+.twotwo .content{
+    position: absolute;
+    display:block;
+    z-index: 2;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:rgb(83, 70, 87);
+    font-size: 24px;
+    white-space:nowrap;
+    text-align: center;
+}
+
+.twotwo button{
+    margin:5px;
+    color:rgb(83, 70, 87);
+}
+
+/* 註冊欄位 */
+.register{
+    position: absolute;
+    display:block;
+    z-index: 2;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:rgb(83, 70, 87);
+    font-size: 24px;
+    white-space:nowrap;
+    display:none;
+}
+/* 忘記密碼欄位 */
+.forgetpwd{
+    position: absolute;
+    display:block;
+    z-index: 2;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:rgb(83, 70, 87);
+    font-size: 24px;
+    white-space:nowrap;
+    display: none;
+}
+/* 重設密碼 */
+.resetpwd{
+    position: absolute;
+    display:block;
+    z-index: 2;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:rgb(83, 70, 87);
+    font-size: 24px;
+    white-space:nowrap;
+    display: none;
+}

@@ -1,0 +1,30 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+.two{
+    position: absolute;
+    display: block;
+    z-index: 1;
+    top:70px;
+    width: calc(100% );
+    height: calc(100% - 70px);
+    overflow: hidden;
+}
+.two img{
+    background-image:url(./akemi.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.two .content{
+    position: absolute;
+    z-index: 2;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:rgb(167, 39, 167);
+    font-size: 24px;
+    white-space:nowrap;
+}
+

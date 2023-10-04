@@ -1,0 +1,155 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+.main{
+background-color: pink;
+}
+
+.main .infomation{
+    display: flex;
+    position: relative;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 220px;
+}
+
+.main.close .infomation{
+    margin-left: 60px;
+}
+
+.main .infomation h1{
+    margin-right: 150px;
+}
+.main.close .infomation h1{
+    margin-right: 300px;
+}
+.main .infomation label{
+    margin-left: 100px;
+}
+
+.main .Cardstitle{
+    display: flex;
+    margin-top:200px;
+    margin-left:220px;
+}
+
+.main .Cardstitle .button1{
+    margin-left: 1220px;
+}
+
+.main.close .Cardstitle .button1{
+    margin-left: 1370px;
+}
+
+.main.close .Cardstitle{
+    margin-left:70px;
+}
+
+/* 整個設備欄位 */
+.main .Cards{
+    display: flex;    /*讓元素橫向排列*/
+    flex-wrap: wrap;  /*當內部元素超過寬度時自動換行 */
+    position: relative;
+    margin-left:220px;
+    z-index: 10;
+    background-color: yellow;
+    width: calc(100%-220px);
+}
+/* 當側邊欄關閉時 整個設備欄位 */
+.main.close .Cards{
+    width:calc(100%-60px);
+    margin-left: 60px;
+}
+/* 單一設備卡 */
+.main .Cards .card{
+    position: relative;
+    text-align: center;
+    margin-top: 30px;
+    width: 168px;
+}
+/* 當側邊欄關閉時 單一設備卡 */
+.main.close .Cards .card{
+    width: 184px;
+}
+
+/* 控制設備圖片大小 */
+.main .card-icon img{
+    width:50px;
+    height:50px;
+}
+
+.tooltiptext{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 5;
+    top:15%;
+    left:25%;
+    border-radius: 20px;
+    background-color:brown;
+    transition: all 1s ease ;
+}
+
+.card:Hover .tooltiptext{
+    visibility: visible;
+    opacity: 1;
+}
+/* 以下是輸入資料的欄位 */
+.addequipment{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:350px;
+}
+.main.close .addequipment{
+    left:250px;
+}
+.editequipment{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:650px;
+}
+.main.close .editequipment{
+    left:600px;
+}
+.editform{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:350px;
+}
+.main.close .editform{
+    left:250px;
+}
+.delequipment{
+    display: none;
+    position:absolute;
+    background-color: darkorchid;
+    margin-left: 70px;
+    padding: 10px;
+    border-radius: 10px;
+    top:100px;
+    left:650px;
+}
+.main.close .delequipment{
+    left:600px;
+}
+
+
+
