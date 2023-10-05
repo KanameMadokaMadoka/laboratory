@@ -6,12 +6,19 @@ const cors = require("cors");
 const nodemailer = require("nodemailer");
 const fs =require('fs');
 const readline = require('readline'); 
-const rl = readline.createInterface({
-  input: process.stdin, 
-  output: process.stdout 
-});
+//以下程式碼可以用來獲取使用者輸入
+// const rl = readline.createInterface({
+//   input: process.stdin, 
+//   output: process.stdout 
+// });
 const logFile = 'device_log.txt'; //日誌文件名稱
 const mysqlconfig = 'config.ini';//mysql組態檔案的名稱
+const mysystemlog = 'systemlog.txt';//systemlog.txt檔案的名稱
+//readline 模块逐行读取文件
+const rl = readline.createInterface({
+  input: fs.createReadStream(mysystemlog),
+  terminal: false
+});
 let user='default';
 let host='default';
 let password='default';
@@ -53,7 +60,16 @@ fs.readFile(mysqlconfig,'utf-8',(err, data)=>{
   console.log(`密碼: ${password}`);
   console.log(`資料庫: ${database}`);
 })
-
+//開始讀取systemlog.txt檔案
+rl.on('line',(line) =>{
+  console.log('Content: ',line);
+})
+rl.on('error',(err)=>{
+console.log('An error occurred:',err);
+});
+rl.on('close',()=>{
+  console.log('File reading completed.');
+})
 //資料庫連結
 const db = mysql.createConnection({
   user: user,
@@ -385,7 +401,7 @@ class Log {
 //   }
 // }
 const log = new Log('device_log.txt');
-// const sql = new closemysql();
+
 
 
 app.listen(3001, () => {

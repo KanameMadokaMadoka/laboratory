@@ -8,7 +8,7 @@ void filectl (int size,char *filename);
 void justtype(int size);
 int main() {
     int size=100;
-    char *fileName="systemlog.txt";
+    char *fileName="/home/madoka/Desktop/laboratory/server/systemlog.txt";
     printf("welcome you have started run c program\n");
     while(1){
     printf("1.justtype\n");
@@ -75,7 +75,7 @@ void filectl (int size,char *filename) {
     if(scanf("%d",inputdata)!=1){
         printf("scanf data is equal NULL\n");
         exit(1);
-    }
+    }else{
     switch(*inputdata){
         case 1:
             printf("file content: \n");
@@ -94,9 +94,22 @@ void filectl (int size,char *filename) {
             while(fgets(filecontent,sizeof(filecontent),file) !=NULL){
                 printf("%s",filecontent);
             }
+            fclose(file);
             break;
         case 2:
-            printf("not yet\n");
+            printf("start to type content in text file\n");
+            char text[100];
+            memset(text, '\0', sizeof(text));
+            FILE *writefile = fopen(filename, "a");
+            if (writefile == NULL) {
+            printf("無法打開文件???");
+            break;
+            }
+            // 使用 %[^\n] 读取整行输入
+            scanf(" %[^\n]", text);
+            fprintf(writefile, "%s\n", text);
+            fclose(writefile);
+            printf("寫入完成\n");
             break;
         case 3:
             printf("not yet\n");
@@ -104,6 +117,7 @@ void filectl (int size,char *filename) {
         default:
             printf("Invalid choice\n");
             break;
+    }
 }
 free(inputdata);    
 }
