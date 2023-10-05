@@ -11,14 +11,55 @@ const rl = readline.createInterface({
   output: process.stdout 
 });
 const logFile = 'device_log.txt'; //日誌文件名稱
+const mysqlconfig = 'config.ini';//mysql組態檔案的名稱
+let user='default';
+let host='default';
+let password='default';
+let database='default';
+let code = ''; //存驗證碼
 app.use(cors());
 app.use(express.json());
+
+// 解析config.ini檔案內容為物件
+function parseConfig(data) {
+  const config = {};
+  const lines = data.split('\n');
+  for (const line of lines) {
+    const parts = line.split(':');
+    if (parts.length === 2) {
+      const key = parts[0].trim();
+      const value = parts[1].trim();
+      config[key] = value;
+    }
+  }
+  return config;
+}
+//開始讀取confing.ini檔案
+fs.readFile(mysqlconfig,'utf-8',(err, data)=>{
+  if(err){
+    console.error('無法讀取config.ini檔案:' + err);
+    return;
+  }
+  // 將檔案內容解析為一個物件
+  const configData = parseConfig(data);
+  // 現在，可以使用configData物件中的變數
+   user = configData.user;
+   host = configData.host;
+   password = configData.password;
+   database = configData.database;
+
+  console.log(`使用者名稱: ${user}`);
+  console.log(`主機: ${host}`);
+  console.log(`密碼: ${password}`);
+  console.log(`資料庫: ${database}`);
+})
+
 //資料庫連結
 const db = mysql.createConnection({
-  user: "madoka",
-  host: "127.0.0.1",
-  password: "ABCd@12345",
-  database: "equipmentsys",
+  user: user,
+  host: host,
+  password: password,
+  database: database,
 });
 //驗證碼產生
 function generateVerificationCode() {
@@ -31,7 +72,6 @@ function generateVerificationCode() {
   
   return code;
 }
-let code = '';
 //登入
 app.post("/login",(req,res)=>{
  const email = req.body.email;
@@ -144,15 +184,11 @@ app.post("/register", (req, res) => {
               } else {
                 res.send('Values Inserted');
               }
-            }
-          );
-
-
-
+            });
+          break;
         }
       }
-    }
-    );
+    });
 });
 //查詢員工
 app.get("/employees", (req, res) => {
@@ -213,8 +249,7 @@ app.post("/createequipment", (req, res) => {
       log.whenCreate('Insert',name,code,principal,position,model,category,year)
       res.send('true');
     }
-  }
-);
+  });
 });
 //查詢設備
 app.get("/equipment", (req, res) => {
@@ -337,8 +372,20 @@ class Log {
     this.logMessage(message);
   }
 }
-
+// class closemysql{
+//     // 關閉資料庫連線
+//     End(){
+//     db.end((endErr) => {
+//       if (endErr) {
+//         console.error('關閉資料庫連線失敗:', endErr);
+//       } else {
+//         console.log('資料庫連線已關閉');
+//       }
+//     });
+//   }
+// }
 const log = new Log('device_log.txt');
+// const sql = new closemysql();
 
 
 app.listen(3001, () => {
