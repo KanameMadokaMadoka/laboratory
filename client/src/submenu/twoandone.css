@@ -1,7 +1,7 @@
 *{
     margin:0px;
     padding:0px;
-}
+}  
 .twoone{
     position: absolute;
     display: block;
@@ -32,4 +32,16 @@
     z-index: 3;
     left:50%;
 }
+#btn{
+    position: relative;
+    margin-left: 50%;
 
+}
+.systemlog{
+    position: relative;
+    background-color: pink;
+}
+#data{
+    position: relative;
+    left:50%;
+}

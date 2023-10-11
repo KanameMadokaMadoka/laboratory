@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const { body, validationResult } = require('express-validator');
 const cors = require("cors");
 const nodemailer = require("nodemailer");
@@ -70,13 +70,22 @@ console.log('An error occurred:',err);
 rl.on('close',()=>{
   console.log('File reading completed.');
 })
+
 //資料庫連結
 const db = mysql.createConnection({
-  user: user,
-  host: host,
-  password: password,
-  database: database,
+  user: "madoka",
+  host: "192.168.239.128",
+  password: "1qaz2wsx",
+  database: "equipmentsys",
 });
+db.connect((err)=>{
+if(err){
+  console.log('無法連接到 MySQL 資料庫:' + err);
+}else{
+  console.log('成功連接到 MySQL 資料庫');
+}
+});
+
 //驗證碼產生
 function generateVerificationCode() {
   const codeLength = 4;
@@ -339,7 +348,28 @@ app.delete("/deleteequipment/:code", (req, res) => {
     }
   });
 });
-
+//傳輸systemlog.txt的檔案內容到前端
+app.get("/systemlog", (req, res) => {
+  let accumulatedText="";
+  const rl = readline.createInterface({
+    input:fs.createReadStream('systemlog.txt'),
+    output:process.stdout,
+    terminal:false
+  })
+//開始讀取systemlog.txt檔案
+rl.on('line',(line) =>{
+  accumulatedText += line +';'+'\n';
+  console.log('Content: ',line);
+})
+rl.on('error',(err)=>{
+  console.log('An error occurred:',err);
+  res.status(500).send(err);
+});
+rl.on('close',()=>{
+  res.send(accumulatedText);
+  console.log('File reading completed.');
+})
+});
 class Log {
   constructor(logFile) {
     this.logFile = logFile;
